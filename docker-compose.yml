@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  profiles-database:
+    image: mongo:4.0-xenial
+    container_name: "profiles-database"
+    ports:
+      - 27017:27017
+    command: --smallfiles
+  profiles-service:
+    image: profile-service
+    ports:
+      - 9091:8080
+    links:
+      - profiles-database
